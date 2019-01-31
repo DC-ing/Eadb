@@ -1,0 +1,17 @@
+*.pyc
+__pycache__
+.DS_Store
+.vscode
+.pypirc
+*/tmp/*
+build/*
+dist/*
+*.egg-info/*
+*.egg-info
+.python-version
+logs/%
+.coverage
+locustfile.py
+site/
+Pipfile.lock
+.idea/*
