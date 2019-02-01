@@ -22,7 +22,7 @@ pip install -U eadb     # 更新版本
 
 ```
 $ eadb -v
-0.0.3       # 安装成功
+0.0.5       # 安装成功
 ```
 
 ### 获取当前连接设备
@@ -38,19 +38,29 @@ $ eadb --devices
 ```
 # 获取当前电脑连接的所有设备的系统版本号
 $ eadb --version
-['4.2.2', '7.1.1']
+{
+    "012332EF": "4.2.2",
+    "dj23df": "7.1.1"
+}
 
 # 获取指定连接设备的系统版本号
 $ eadb --version 012332EF
-4.2.2
+{
+    "012332EF": "4.2.2"
+}
 
 # 获取当前电脑连接的所有设备的系统版本号
 $ adversion
-['4.2.2', '7.1.1']
+{
+    "012332EF": "4.2.2",
+    "dj23df": "7.1.1"
+}
 
 # 获取指定连接设备的系统版本号
 $ adversion --id 012332EF
-4.2.2
+{
+    "012332EF": "4.2.2"
+}
 
 ```
 
@@ -59,19 +69,30 @@ $ adversion --id 012332EF
 ```
 # 获取当前电脑连接的所有设备的设备名称
 $ eadb --name
-['Coolpad-9976A', 'google-Nexus_6P']
+{
+    "012332EF": "Coolpad-9976A",
+    "dj23df": "google-Nexus_6P"
+}
 
 # 获取指定连接设备的设备名称
 $ eadb --name 012332EF
-Coolpad-9976A
+{
+    "012332EF": "Coolpad-9976A"
+}
 
 # 获取当前电脑连接的所有设备的设备名称
 $ adname
-['Coolpad-9976A', 'google-Nexus_6P']
+{
+    "012332EF": "Coolpad-9976A",
+    "dj23df": "google-Nexus_6P"
+}
 
 # 获取指定连接设备的设备名称
 $ adname --id 012332EF
-Coolpad-9976A
+{
+    "012332EF": "Coolpad-9976A"
+}
+
 ```
 
 # 获取连接设备的截屏
@@ -79,25 +100,28 @@ Coolpad-9976A
 ```
 # 获取当前电脑连接的所有设备的截屏
 $ eadb ----screenshot
-
+'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
+'google-Nexus_6P'截屏成功，存放路径为'/your/path/save/google-Nexus_6P-7.1.1-20190201-111104.png'
 
 # 获取指定连接设备的截屏
 $ eadb ----screenshot 012332EF
-
+'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
 
 # 获取当前电脑连接的所有设备的截屏
 $ adscreen
-
+'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
+'google-Nexus_6P'截屏成功，存放路径为'/your/path/save/google-Nexus_6P-7.1.1-20190201-111104.png'
 
 # 获取指定连接设备的截屏
 $ adscreen --id 012332EF
+'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
 
 ```
 
 ## 版本规划
 
-- 完成自定义命令设置（已完成）
-- adb基本命令封装（devices、name、version、screenshot）
-- 优化终端命令行输出（未完成）
-- 命令行尝试采用第三方库click
+- 完成自定义命令设置（完成）
+- adb基本命令封装（完成devices、name、version、screenshot）
+- 优化终端命令行输出（完成）
+- 命令行尝试采用第三方库click(暂未完成)
 - 封装更多的命令行（暂未有规划）

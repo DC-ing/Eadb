@@ -1,6 +1,6 @@
 __title__ = 'Eadb'
 __description__ = 'make adb more easy'
-__url__ = 'https://github.com/wenshi11019'
+__url__ = 'https://github.com/wenshi11019/eadb'
 __version__ = '0.0.5'
 __author__ = 'DC_ing'
 __author_email__ = 'dc_ing@qq.com'
