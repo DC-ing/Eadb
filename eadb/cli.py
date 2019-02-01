@@ -11,9 +11,8 @@ import argparse
 from eadb.adb import AndroidAdb
 from eadb.__about__ import __description__, __version__
 from eadb.help_content import device_name_help, device_version_help, screenshot_help, device_id_help
-
+from eadb.utils import json_print
 myadb = AndroidAdb()
-device_ids = myadb.devices()
 parser = argparse.ArgumentParser(description=__description__)
 
 
@@ -28,12 +27,8 @@ def cmd_property(fun_name, help=None):
         def wrapper(*args, **kwargs):
             parser.add_argument('--id', dest='id', help=help)
             args = parser.parse_args()
-            content = ''
-            if args.id:
-                content = getattr(myadb, fun_name)(id=args.id)
-            else:
-                content = getattr(myadb, fun_name)()
-            return content
+            content = getattr(myadb, fun_name)(id=args.id)
+            return json_print(content)
         return wrapper
     return decorator
 
@@ -41,9 +36,9 @@ def cmd_property(fun_name, help=None):
 def main_eadb():
     parser.add_argument('-v', dest='version', action='store_true', help="show version")
     parser.add_argument('--devices', dest='devices', action='store_true', help=device_id_help)
-    parser.add_argument('--name', nargs='?', const=device_ids, dest='name', help=device_name_help)
-    parser.add_argument('--version', nargs='?', const=device_ids, dest='adversion', help=device_version_help)
-    parser.add_argument('--screenshot', nargs='?', const=device_ids, dest='screenshot', help=screenshot_help)
+    parser.add_argument('--name', nargs='?', const=myadb.ids, dest='name', help=device_name_help)
+    parser.add_argument('--version', nargs='?', const=myadb.ids, dest='adversion', help=device_version_help)
+    parser.add_argument('--screenshot', nargs='?', const=myadb.ids, dest='screenshot', help=screenshot_help)
 
     args = parser.parse_args()
 
@@ -52,14 +47,14 @@ def main_eadb():
         exit(0)
 
     if args.devices:
-        print(myadb.devices())
+        print(myadb.ids)
         exit(0)
 
     if args.adversion:
-        print(myadb.versions(id=args.adversion))
+        json_print(myadb.versions(id=args.adversion))
 
     if args.name:
-        print(myadb.deviceNames(id=args.name))
+        json_print(myadb.deviceNames(id=args.name))
 
     if args.screenshot:
         myadb.screenshot(id=args.screenshot)
