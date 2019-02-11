@@ -99,12 +99,12 @@ $ adname --id 012332EF
 
 ```
 # 获取当前电脑连接的所有设备的截屏
-$ eadb ----screenshot
+$ eadb --screenshot
 'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
 'google-Nexus_6P'截屏成功，存放路径为'/your/path/save/google-Nexus_6P-7.1.1-20190201-111104.png'
 
 # 获取指定连接设备的截屏
-$ eadb ----screenshot 012332EF
+$ eadb --screenshot 012332EF
 'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
 
 # 获取当前电脑连接的所有设备的截屏
