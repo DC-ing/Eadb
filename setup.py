@@ -8,7 +8,10 @@
 
 import os
 import io
-from setuptools import find_packages, setup
+import sys
+
+from shutil import rmtree
+from setuptools import find_packages, setup, Command
 
 about = {}
 here = os.path.abspath(os.path.dirname(__file__))
@@ -19,6 +22,44 @@ with io.open("README.md", encoding='utf-8') as f:
     long_description = f.read()
 
 install_requires = []
+
+
+class UploadCommand(Command):
+    """Support setup.py upload. copy from
+    https://github.com/kenneth-reitz/setup.py/blob/master/setup.py"""
+
+    user_options = []
+
+    @staticmethod
+    def status(s):
+        """Prints things in bold."""
+        print('\033[1m{0}\033[0m'.format(s))
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        try:
+            self.status('Removing previous builds…')
+            rmtree(os.path.join(here, 'dist'))
+        except OSError:
+            pass
+
+        self.status('Building Source and Wheel (universal) distribution…')
+        os.system('{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
+
+        self.status('Uploading the package to PyPI via Twine…')
+        os.system('twine upload dist/*')
+
+        self.status('Pushing git tags…')
+        os.system('git tag v{0}'.format(about['__version__']))
+        os.system('git push --tags')
+
+        sys.exit()
+
 
 setup(
     name=about['__title__'],
@@ -49,5 +90,8 @@ setup(
             'adversion=eadb.cli:get_version',
             'adname=eadb.cli:get_device_name',
         ]
+    },
+    cmdclass={
+        'upload': UploadCommand
     }
 )
