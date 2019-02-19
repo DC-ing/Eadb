@@ -12,25 +12,10 @@ from eadb.adb import AndroidAdb
 from eadb.__about__ import __description__, __version__
 from eadb.help_content import device_name_help, device_version_help, screenshot_help, device_id_help
 from eadb.utils import json_print
+
+
 myadb = AndroidAdb()
 parser = argparse.ArgumentParser(description=__description__)
-
-
-def cmd_property(fun_name, help=None):
-    """
-    常用adb命令自定义装饰器
-    :param fun_name: 常用adb封装命令的装饰器
-    :param help: 帮助信息，可以为空
-    :return: 返回结果
-    """
-    def decorator(func):
-        def wrapper(*args, **kwargs):
-            parser.add_argument('--id', dest='id', help=help)
-            args = parser.parse_args()
-            content = getattr(myadb, fun_name)(id=args.id)
-            return json_print(content)
-        return wrapper
-    return decorator
 
 
 def main_eadb():
@@ -60,19 +45,29 @@ def main_eadb():
         myadb.screenshot(id=args.screenshot)
 
 
-@cmd_property(myadb.versions.__name__, help=device_version_help)
+def custom_cmd(fun_name, help=None):
+    """
+    常用adb命令自定义封装
+    :param fun_name: adb封装命令函数名
+    :param help: 帮助信息，可以为空
+    :return: 返回结果
+    """
+    parser.add_argument('--id', dest='id', help=help)
+    args = parser.parse_args()
+    content = getattr(myadb, fun_name)(id=args.id)
+    return json_print(content)
+
+
 def get_version():
-    pass
+    custom_cmd(myadb.versions.__name__, help=device_version_help)
 
 
-@cmd_property(myadb.screenshot.__name__, help=screenshot_help)
 def get_screenshot():
-    pass
+    custom_cmd(myadb.screenshot.__name__, help=screenshot_help)
 
 
-@cmd_property(myadb.deviceNames.__name__, help=device_name_help)
 def get_device_name():
-    pass
+    custom_cmd(myadb.deviceNames.__name__, help=device_name_help)
 
 
 if __name__ == '__main__':
