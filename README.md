@@ -17,25 +17,16 @@ pip install eadb        # 安装
 pip install -U eadb     # 更新版本
  ```
 
-## 使用
-### 查看版本号
+## 使用方法
 
-```
-$ eadb -v
-0.0.5       # 安装成功
-```
-
-### 获取当前连接设备
+目前包含命令行有`eadb`,`adname`,`adversion`,`adscreen`,`adinfo`.<br>
+具体使用文档可参照【命令行+`-h`】命令
 
 ```
 $ eadb --devices
 ['012332EF', 'dj23df']
 
-```
 
-### 获取连接的设备版本号
-
-```
 # 获取当前电脑连接的所有设备的系统版本号
 $ eadb --version
 {
@@ -64,59 +55,6 @@ $ adversion --id 012332EF
 
 ```
 
-# 获取连接的设备名称
-
-```
-# 获取当前电脑连接的所有设备的设备名称
-$ eadb --name
-{
-    "012332EF": "Coolpad-9976A",
-    "dj23df": "google-Nexus_6P"
-}
-
-# 获取指定连接设备的设备名称
-$ eadb --name 012332EF
-{
-    "012332EF": "Coolpad-9976A"
-}
-
-# 获取当前电脑连接的所有设备的设备名称
-$ adname
-{
-    "012332EF": "Coolpad-9976A",
-    "dj23df": "google-Nexus_6P"
-}
-
-# 获取指定连接设备的设备名称
-$ adname --id 012332EF
-{
-    "012332EF": "Coolpad-9976A"
-}
-
-```
-
-# 获取连接设备的截屏
-
-```
-# 获取当前电脑连接的所有设备的截屏
-$ eadb --screenshot
-'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
-'google-Nexus_6P'截屏成功，存放路径为'/your/path/save/google-Nexus_6P-7.1.1-20190201-111104.png'
-
-# 获取指定连接设备的截屏
-$ eadb --screenshot 012332EF
-'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
-
-# 获取当前电脑连接的所有设备的截屏
-$ adscreen
-'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
-'google-Nexus_6P'截屏成功，存放路径为'/your/path/save/google-Nexus_6P-7.1.1-20190201-111104.png'
-
-# 获取指定连接设备的截屏
-$ adscreen --id 012332EF
-'Coolpad-9976A'截屏成功，存放路径为'/your/path/save/Coolpad-9976A-4.2.2-20190201-111100.png'
-
-```
 
 ## 版本规划
 

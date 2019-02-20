@@ -88,7 +88,8 @@ setup(
             'eadb=eadb.cli:main_eadb',
             'adscreen=eadb.cli:get_screenshot',
             'adversion=eadb.cli:get_version',
-            'adname=eadb.cli:get_device_name',
+            'adname=eadb.cli:get_name',
+            'adinfo=eadb.cli:get_info',
         ]
     },
     cmdclass={
