@@ -59,7 +59,8 @@ $ adversion --id 012332EF
 ## 版本规划
 
 - 完成自定义命令设置（完成）
-- adb基本命令封装（完成devices、name、version、screenshot）
-- 优化终端命令行输出（完成）
-- 命令行尝试采用第三方库click(暂未完成)
-- 封装更多的命令行（暂未有规划）
+- adb基本命令封装（完成devices、name、version、screenshot、info）
+- 优化终端命令行输出（完成，以json格式输出）
+- logging融入到命令输出上（未完成，添加参数`--verbose`）
+- 命令行尝试采用第三方库click(未完成)
+- 封装更多的命令行（未有规划，等待大家的建议）

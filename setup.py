@@ -93,6 +93,6 @@ setup(
         ]
     },
     cmdclass={
-        'upload': UploadCommand
-    }
+        'upload': UploadCommand,
+    },
 )
