@@ -21,10 +21,11 @@ parser = argparse.ArgumentParser(description=__description__)
 def main_eadb():
     parser.add_argument('-v', dest='version', action='store_true', help="show version")
     parser.add_argument('--devices', dest='devices', action='store_true', help=help_content.device_id_help)
-    parser.add_argument('--name', nargs='?', const=myadb.ids, dest='name', help=help_content.device_name_help)
-    parser.add_argument('--version', nargs='?', const=myadb.ids, dest='adversion', help=help_content.device_version_help)
-    parser.add_argument('--screenshot', nargs='?', const=myadb.ids, dest='screenshot', help=help_content.screenshot_help)
-    parser.add_argument('--info', nargs='?', const=myadb.ids, dest='info', help=help_content.info_help)
+    parser.add_argument('--name', dest='name', nargs='?', const=myadb.ids, help=help_content.device_name_help)
+    parser.add_argument('--version', dest='adversion', nargs='?', const=myadb.ids, help=help_content.device_version_help)
+    parser.add_argument('--screenshot', dest='screenshot', nargs='?', const=myadb.ids, help=help_content.screenshot_help)
+    parser.add_argument('--info', dest='info', nargs='?', const=myadb.ids, help=help_content.info_help)
+    parser.add_argument('--size', dest='size', nargs='?', const=myadb.ids, help=help_content.wm_size_help)
 
     args = parser.parse_args()
 
@@ -47,6 +48,9 @@ def main_eadb():
 
     if args.info:
         json_print(get_device_something(myadb.device_info, id=args.info))
+
+    if args.size:
+        json_print(get_device_something(myadb.device_wm_size, id=args.size))
 
 
 def custom_cmd(func, help=None):
@@ -76,6 +80,10 @@ def get_name():
 
 def get_info():
     custom_cmd(myadb.device_info, help=help_content.info_help)
+
+
+def get_wm_size():
+    custom_cmd(myadb.device_wm_size, help=help_content.wm_size_help)
 
 
 if __name__ == '__main__':

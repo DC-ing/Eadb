@@ -19,7 +19,7 @@ pip install -U eadb     # 更新版本
 
 ## 使用方法
 
-目前包含命令行有`eadb`,`adname`,`adversion`,`adscreen`,`adinfo`.<br>
+目前包含命令行有`eadb`,`adname`,`adversion`,`adscreen`,`adinfo`,`adsize`.<br>
 具体使用文档可参照【命令行+`-h`】命令
 
 ```
@@ -59,7 +59,7 @@ $ adversion --id 012332EF
 ## 版本规划
 
 - 完成自定义命令设置（完成）
-- adb基本命令封装（完成devices、name、version、screenshot、info）
+- adb基本命令封装（完成devices、name、version、screenshot、info、wm_size）
 - 优化终端命令行输出（完成，以json格式输出）
 - logging融入到命令输出上（未完成，添加参数`--verbose`）
 - 命令行尝试采用第三方库click(未完成)

@@ -90,6 +90,7 @@ setup(
             'adversion=eadb.cli:get_version',
             'adname=eadb.cli:get_name',
             'adinfo=eadb.cli:get_info',
+            'adsize=eadb.cli:get_wm_size',
         ]
     },
     cmdclass={

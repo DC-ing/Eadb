@@ -134,6 +134,25 @@ class AndroidAdb(object):
         logging.info(r"获取到设备'{0}'的系统版本号为'{1}'".format(id, version))
         return version_dict
 
+    def device_wm_size(self, id=None):
+        """
+        获取指定设备的屏幕大小
+
+        返回字符串格式：
+        {
+            "010799de5169b322": "1080x1920"
+        }
+
+        :param id: 设备号
+        :return: 设备大小
+        """
+        size_dict = {}
+        size = run_command('adb -s {0} shell wm size'.format(id))
+        size = size.split(':')[1].strip()
+        size_dict[id] = re.sub('\r\n|\n', '', size)
+        logging.info(r"获取到设备'{0}'的屏幕大小为'{1}'".format(id, size))
+        return size_dict
+
     def device_screenshot(self, id=None):
         """
         对指定设备进行截屏，并放到电脑的桌面上
