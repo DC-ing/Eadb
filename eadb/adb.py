@@ -167,6 +167,6 @@ class AndroidAdb(object):
         screen_in_device = '/sdcard/{0}'.format(screen_file)
         run_command('adb -s {0} shell screencap {1}'.format(id, screen_in_device))
         run_command('adb -s {0} pull {1} {2}'.format(id, screen_in_device, screen_path))
-        run_command('adb -rs {0} shell rm {1}'.format(id, screen_in_device))
+        run_command('adb -s {0} shell rm {1}'.format(id, screen_in_device))
         print(r"'{0}'截屏成功，存放路径为'{1}'".format(device_name, screen_path))
 
