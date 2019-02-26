@@ -41,8 +41,32 @@ class IOSCmd(object):
         return devices
 
     def device_info(self, id=None):
-        print("ios 准备开发")
-        pass
+        """
+        获取指定设备常用信息
+
+        返回字符串格式：
+        {
+            "abcds": {
+                "name": "device1",
+                "version": "4.4.2"
+            },
+            "123dfs": {
+                "name": "device2",
+                "version": "7.1.1"
+            }
+        }
+
+        :param id: 设备 id
+        :return: 设备相关信息列表
+        """
+        info_dict = {}
+        one_device_info = {}
+        one_device_info['platform'] = 'iOS'
+        one_device_info['name'] = self.device_name(id=id)[id]
+        one_device_info['version'] = self.device_version(id=id)[id]
+        one_device_info['wm_size'] = None
+        info_dict[id] = one_device_info
+        return info_dict
 
     def device_name(self, id=None):
         """

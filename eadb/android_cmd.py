@@ -60,6 +60,7 @@ class AndroidAdb(object):
         """
         info_dict = {}
         one_device_info = {}
+        one_device_info['platform'] = 'Android'
         one_device_info['name'] = self.device_name(id=id)[id]
         one_device_info['version'] = self.device_version(id=id)[id]
         one_device_info['wm_size'] = self.device_wm_size(id=id)[id]
