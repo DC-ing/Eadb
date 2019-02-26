@@ -15,8 +15,6 @@ from eadb.utils import check_is_none
 
 android = AndroidAdb()
 ios = IOSCmd()
-adevices = android.ids
-idevices = ios.ids
 
 
 def get_connect_devices():
@@ -26,10 +24,10 @@ def get_connect_devices():
     """
     devices = []
     # 有设备连接才显示
-    if not check_is_none(adevices):
-        devices.append(adevices)
-    if not check_is_none(idevices):
-        devices.append(idevices)
+    if not check_is_none(android.ids):
+        devices.append(android.ids)
+    if not check_is_none(ios.ids):
+        devices.append(ios.ids)
 
     return devices
 
@@ -45,10 +43,10 @@ def print_connect_device():
     """
     print_devices = {}
     # 有设备连接才显示
-    if not check_is_none(adevices):
-        print_devices['android'] = adevices
-    if not check_is_none(idevices):
-        print_devices['ios'] = idevices
+    if not check_is_none(android.ids):
+        print_devices['android'] = android.ids
+    if not check_is_none(ios.ids):
+        print_devices['ios'] = ios.ids
     return print_devices
 
 
@@ -69,9 +67,9 @@ def run_device_cmd(fun_name, device_id=None, error_mes=None):
     else:
         if type(device_id) is str:
             # 判断当前设备号是 Android 还是 iOS
-            if not check_is_none(adevices) and device_id in adevices:
+            if not check_is_none(android.ids) and device_id in android.ids:
                 obj = android
-            elif not check_is_none(idevices) and device_id in idevices:
+            elif not check_is_none(ios.ids) and device_id in ios.ids:
                 obj = ios
             else:
                 error_mes = r"输入的设备号错误，请重新尝试。"
