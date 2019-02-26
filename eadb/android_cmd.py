@@ -13,33 +13,6 @@ import logging
 from eadb.utils import check_is_none, get_time, run_command
 
 
-def get_device_something(func, id=None, error_mes=None):
-    """
-    获得设备相关信息的基础方法，所有命令行均可以套取此方法的使用
-    :param func: 相关命令行函数
-    :param id: 设备号
-    :param error_mes: 错误信息
-    :return: 设备信息的dict字符串
-    """
-    device_dict = {}
-    aadb = AndroidAdb()
-    if check_is_none(id) and not check_is_none(aadb.ids):
-        return get_device_something(func, id=aadb.ids)
-    else:
-        if type(id) is str:
-            device_dict = func(id=id)
-        elif type(id) is list:
-            devices_dict = {}
-            for aid in id:
-                tmp_dict = get_device_something(func, id=aid)
-                if not check_is_none(tmp_dict):
-                    devices_dict.update(tmp_dict)
-            device_dict.update(devices_dict)
-        else:
-            logging.error(error_mes)
-    return device_dict
-
-
 class AndroidAdb(object):
 
     def __init__(self):
@@ -62,7 +35,8 @@ class AndroidAdb(object):
                 devices.append(lines[i].replace('\tdevice', ''))
         logging.info(r'获取到已连接的设备：{0}'.format(devices))
         if check_is_none(devices):
-            logging.warning(r'当前无设备连接')
+            logging.warning(r'当前无 Android 设备连接')
+            return None
         return devices
 
     def device_info(self, id=None):

@@ -86,11 +86,11 @@ setup(
     entry_points={
         'console_scripts': [
             'eadb=eadb.cli:main_eadb',
-            'adscreen=eadb.cli:get_screenshot',
-            'adversion=eadb.cli:get_version',
-            'adname=eadb.cli:get_name',
-            'adinfo=eadb.cli:get_info',
-            'adsize=eadb.cli:get_wm_size',
+            'escreen=eadb.cli:get_screenshot',
+            'eversion=eadb.cli:get_version',
+            'ename=eadb.cli:get_name',
+            'einfo=eadb.cli:get_info',
+            'esize=eadb.cli:get_wm_size',
         ]
     },
     cmdclass={

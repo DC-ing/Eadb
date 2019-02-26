@@ -39,7 +39,10 @@ def check_is_none(content):
     :return: 是否为空
     """
     # 检查str是否为空
-    if content is '' or content is None:
+    if content is '':
+        return True
+    # 检查是否为None
+    elif content is None:
         return True
     # 检查list是否为空
     elif type(content) is list and len(content) == 0:
@@ -52,7 +55,7 @@ def check_is_none(content):
 
 
 def json_print(dict_str):
-    if check_is_none(dict_str):
+    if check_is_none(dict(dict_str)):
         return
     try:
         j = json.dumps(dict_str, sort_keys=True, indent=4)

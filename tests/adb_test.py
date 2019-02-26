@@ -8,13 +8,13 @@
 
 
 import unittest
-from eadb import adb
+from eadb import android_cmd
 
 
-class Adb_test(unittest.TestCase):
+class AndroidCMDTest(unittest.TestCase):
 
     def setUp(self):
-        self.adb = adb.AndroidAdb()
+        self.adb = android_cmd.AndroidAdb()
 
     def test_get_devices(self):
         print(self.adb.devices())
