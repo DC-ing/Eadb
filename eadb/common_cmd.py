@@ -15,8 +15,8 @@ from eadb.utils import check_is_none
 
 android = AndroidAdb()
 ios = IOSCmd()
-adevices = android.devices()
-idevices = ios.devices()
+adevices = android.ids
+idevices = ios.ids
 
 
 def get_connect_devices():
@@ -89,6 +89,6 @@ def run_device_cmd(fun_name, device_id=None, error_mes=None):
                     devices_dict.update(tmp_dict)
             device_dict.update(devices_dict)
         else:
-            logging.error(error_mes)
+            pass
 
     return device_dict

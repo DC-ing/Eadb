@@ -9,10 +9,11 @@
  1. 搭建 Java 开发环境
  2. 搭建 Android-SDK 开发环境
  3. 安装 Python 3 环境，推荐使用3.7
- 4. 安装iOS第三方库：`libimobliedevice`, `usbmuxd`, `ideviceinstaller`
+ 4. 安装iOS开发环境以及第三方库：`Xcode`, `Xcode Command Line Tools`, `libimobliedevice`, `usbmuxd`, `ideviceinstaller`
 
 ```
 # 仅在 macOS 系统上有效。
+# iOS 手机需连上xcode，在【设置->开发者】选项中，打开Enable UI Automation开关
 brew uninstall ideviceinstaller
 brew uninstall libimobiledevice
 brew uninstall usbmuxd

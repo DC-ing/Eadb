@@ -13,12 +13,11 @@ from eadb.__about__ import __description__, __version__
 from eadb import help_content
 from eadb.utils import json_print
 
-
-ids = get_connect_devices()
 parser = argparse.ArgumentParser(description=__description__)
 
 
 def main_eadb():
+    ids = get_connect_devices()
     parser.add_argument('-v', dest='version', action='store_true', help="show version")
     parser.add_argument('--devices', dest='devices', action='store_true', help=help_content.device_id_help)
     parser.add_argument('--name', dest='name', nargs='?', const=ids, help=help_content.device_name_help)
