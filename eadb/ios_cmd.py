@@ -118,7 +118,7 @@ class IOSCmd(object):
         screen_path = '{0}/Desktop/{1}'.format(os.environ['HOME'], screen_file)
         logging.info(r'截图存放路径：{0}'.format(screen_path))
         screen_log = run_command('idevicescreenshot -u {0} {1}'.format(id, screen_path))
-        if not check_is_none(screen_log) and 'Could not start screenshotr service':
+        if not check_is_none(screen_log) and 'Could not start screenshotr service' in screen_log:
             print(r'iOS 截屏服务出错，请修复')
             logging.error(screen_log)
             exit(1)
