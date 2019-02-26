@@ -66,6 +66,10 @@ def custom_cmd(func, help=None):
     return json_print(content)
 
 
+def get_devices():
+    json_print(print_connect_device())
+
+
 def get_version():
     custom_cmd('device_version', help=help_content.device_version_help)
 

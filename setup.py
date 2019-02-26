@@ -91,6 +91,7 @@ setup(
             'ename=eadb.cli:get_name',
             'einfo=eadb.cli:get_info',
             'esize=eadb.cli:get_wm_size',
+            'edevices=eadb.cli:get_devices',
         ]
     },
     cmdclass={

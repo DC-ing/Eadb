@@ -11,7 +11,7 @@ import unittest
 from eadb import utils
 
 
-class Utils_test(unittest.TestCase):
+class UtilsTest(unittest.TestCase):
 
     def test_run_command(self):
         self.assertIsNotNone(utils.run_command('ls'))
