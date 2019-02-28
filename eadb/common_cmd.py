@@ -10,7 +10,7 @@
 import logging
 from eadb.android_cmd import AndroidAdb
 from eadb.ios_cmd import IOSCmd
-from eadb.utils import check_is_none
+from eadb.utils import check_is_none, json_print
 
 
 android = AndroidAdb()
@@ -34,11 +34,14 @@ def get_connect_devices():
 
 def print_connect_device():
     """
+    输出当前连接的 Android 和 iOS 设备列表
+
+    输出格式:
     {
         "android": ['dsfkjw', 'werwr'],
         "ios": ['ertgffddfg', 'dfgd']
     }
-    获取当前连接的 Android 和 iOS 设备
+
     :return: 设备列表
     """
     print_devices = {}
@@ -47,7 +50,7 @@ def print_connect_device():
         print_devices['android'] = android.ids
     if not check_is_none(ios.ids):
         print_devices['ios'] = ios.ids
-    return print_devices
+    json_print(print_devices)
 
 
 def run_device_cmd(fun_name, device_id=None, error_mes=None):
@@ -89,4 +92,4 @@ def run_device_cmd(fun_name, device_id=None, error_mes=None):
         else:
             pass
 
-    return device_dict
+    return json_print(device_dict)

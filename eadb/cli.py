@@ -11,7 +11,6 @@ import argparse
 from eadb.common_cmd import get_connect_devices, print_connect_device, run_device_cmd
 from eadb.__about__ import __description__, __version__
 from eadb import help_content
-from eadb.utils import json_print
 
 parser = argparse.ArgumentParser(description=__description__)
 
@@ -33,23 +32,23 @@ def main_eadb():
         exit(0)
 
     if args.devices:
-        json_print(print_connect_device())
+        print_connect_device()
         exit(0)
 
     if args.adversion:
-        json_print(run_device_cmd('device_version', device_id=args.adversion))
+        run_device_cmd('device_version', device_id=args.adversion)
 
     if args.name:
-        json_print(run_device_cmd('device_name', device_id=args.name))
+        run_device_cmd('device_name', device_id=args.name)
 
     if args.screenshot:
         run_device_cmd('device_screenshot', device_id=args.screenshot)
 
     if args.info:
-        json_print(run_device_cmd('device_info', device_id=args.info))
+        run_device_cmd('device_info', device_id=args.info)
 
     if args.size:
-        json_print(run_device_cmd('device_wm_size', device_id=args.size))
+        run_device_cmd('device_wm_size', device_id=args.size)
 
 
 def custom_cmd(func, help=None):
@@ -62,12 +61,11 @@ def custom_cmd(func, help=None):
     parser.add_argument('--id', dest='id', help=help)
     args = parser.parse_args()
     # args.id 可以为空，也可以有值
-    content = run_device_cmd(func, device_id=args.id)
-    return json_print(content)
+    run_device_cmd(func, device_id=args.id)
 
 
 def get_devices():
-    json_print(print_connect_device())
+    print_connect_device()
 
 
 def get_version():
