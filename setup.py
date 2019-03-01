@@ -87,10 +87,7 @@ setup(
         'console_scripts': [
             'eadb=eadb.cli:main_eadb',
             'escreen=eadb.cli:get_screenshot',
-            'eversion=eadb.cli:get_version',
-            'ename=eadb.cli:get_name',
             'einfo=eadb.cli:get_info',
-            'esize=eadb.cli:get_wm_size',
             'edevices=eadb.cli:get_devices',
         ]
     },

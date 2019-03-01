@@ -19,11 +19,8 @@ def main_eadb():
     ids = get_connect_devices()
     parser.add_argument('-v', dest='version', action='store_true', help="show version")
     parser.add_argument('--devices', dest='devices', action='store_true', help=help_content.device_id_help)
-    parser.add_argument('--name', dest='name', nargs='?', const=ids, help=help_content.device_name_help)
-    parser.add_argument('--version', dest='adversion', nargs='?', const=ids, help=help_content.device_version_help)
     parser.add_argument('--screenshot', dest='screenshot', nargs='?', const=ids, help=help_content.screenshot_help)
     parser.add_argument('--info', dest='info', nargs='?', const=ids, help=help_content.info_help)
-    parser.add_argument('--size', dest='size', nargs='?', const=ids, help=help_content.wm_size_help)
 
     args = parser.parse_args()
 
@@ -35,20 +32,11 @@ def main_eadb():
         print_connect_device()
         exit(0)
 
-    if args.adversion:
-        run_device_cmd('device_version', device_id=args.adversion)
-
-    if args.name:
-        run_device_cmd('device_name', device_id=args.name)
-
     if args.screenshot:
         run_device_cmd('device_screenshot', device_id=args.screenshot)
 
     if args.info:
         run_device_cmd('device_info', device_id=args.info)
-
-    if args.size:
-        run_device_cmd('device_wm_size', device_id=args.size)
 
 
 def custom_cmd(func, help=None):
@@ -68,24 +56,12 @@ def get_devices():
     print_connect_device()
 
 
-def get_version():
-    custom_cmd('device_version', help=help_content.device_version_help)
-
-
 def get_screenshot():
     custom_cmd('device_screenshot', help=help_content.screenshot_help)
 
 
-def get_name():
-    custom_cmd('device_name', help=help_content.device_name_help)
-
-
 def get_info():
     custom_cmd('device_info', help=help_content.info_help)
-
-
-def get_wm_size():
-    custom_cmd('device_wm_size', help=help_content.wm_size_help)
 
 
 if __name__ == '__main__':
