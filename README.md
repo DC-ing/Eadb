@@ -35,7 +35,7 @@ pip install -U eadb     # 更新版本
 
 ## 使用方法
 
-目前包含命令行有`eadb`,`ename`,`eversion`,`escreen`,`einfo`,`esize`.<br>
+目前包含命令行有`eadb`,`escreen`,`einfo`.<br>
 具体使用文档可参照【命令行+`-h`】命令
 
 ```
@@ -43,30 +43,48 @@ $ eadb --devices
 ['012332EF', 'dj23df']
 
 
-# 获取当前电脑连接的所有设备的系统版本号
-$ eadb --version
+# 获取当前电脑连接的所有设备的信息
+$ eadb --info
 {
-    "012332EF": "4.2.2",
-    "dj23df": "7.1.1"
+    "abcds": {
+        "name": "device1",
+        "version": "4.4.2"
+    },
+    "123dfs": {
+        "name": "device2",
+        "version": "7.1.1"
+    }
 }
 
-# 获取指定连接设备的系统版本号
-$ eadb --version 012332EF
+# 获取指定连接设备的信息
+$ eadb --info 012332EF
 {
-    "012332EF": "4.2.2"
+    "012332EF": {
+        "name": "device1",
+        "version": "4.4.2"
+    }
 }
 
-# 获取当前电脑连接的所有设备的系统版本号
-$ adversion
+# 获取当前电脑连接的所有设备的信息
+$ einfo
 {
-    "012332EF": "4.2.2",
-    "dj23df": "7.1.1"
+    "abcds": {
+        "name": "device1",
+        "version": "4.4.2"
+    },
+    "123dfs": {
+        "name": "device2",
+        "version": "7.1.1"
+    }
 }
 
-# 获取指定连接设备的系统版本号
-$ adversion --id 012332EF
+# 获取指定连接设备的信息
+$ einfo --id 012332EF
 {
-    "012332EF": "4.2.2"
+    "012332EF": {
+        "name": "device1",
+        "version": "4.4.2"
+    }
 }
 
 ```
@@ -80,3 +98,5 @@ $ adversion --id 012332EF
 - 封装ios的命令行（已完成）
 - 自动识别Android或iOS，一个命令即可完成（已完成）
 - logging融入到命令输出上（未完成，添加参数`--verbose`）
+- 更多命令封装（install、uninstall、push、pull、monkey）
+- 参考facebook的fadb

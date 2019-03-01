@@ -29,7 +29,7 @@ def get_time():
     获取指定格式的当前字符串，如：20181016-162638
     :return: 当前时间字符串
     """
-    return time.strftime(r'%Y%m%d-%H%M%S', time.localtime())
+    return time.strftime('%Y%m%d-%H%M%S', time.localtime())
 
 
 def check_is_none(content):
@@ -39,7 +39,7 @@ def check_is_none(content):
     :return: 是否为空
     """
     # 检查str是否为空
-    if content == '' or content == '[]' or content == '{}':
+    if content == '' or content == '[]' or content == '{}' or content == '()':
         return True
     # 检查是否为None
     elif content is None:

@@ -16,8 +16,8 @@ from eadb.utils import check_is_none, get_time, run_command
 class IOSCmd(object):
 
     def __init__(self):
-        check_adb_is_ok = run_command('idevice_id -l')
-        if 'command not found' in check_adb_is_ok:
+        check_ios_is_ok = run_command('idevice_id -l')
+        if 'command not found' in check_ios_is_ok:
             logging.error(r'请安装 iOS 开发环境.')
             raise EnvironmentError(r'Please install iOS development environment first.')
         self.ids = self.devices()

@@ -74,7 +74,7 @@ setup(
     python_requires='>=3.0, <4',
     packages=find_packages(exclude=["examples", "tests", "tests.*"]),
     install_requires=install_requires,
-    keywords='Android adb',
+    keywords='Android adb iOS cmd',
     extras_require={},
     classifiers=[
         "Development Status :: 3 - Alpha",

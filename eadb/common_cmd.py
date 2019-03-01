@@ -53,12 +53,11 @@ def print_connect_device():
     json_print(print_devices)
 
 
-def run_device_cmd(fun_name, device_id=None, error_mes=None):
+def run_device_cmd(fun_name, device_id=None):
     """
     获得设备相关信息的基础方法，所有命令行均可以套取此方法的使用
     :param fun_name: 相关命令行函数
     :param device_id: 设备号
-    :param error_mes: 错误信息
     :return: 设备信息的dict字符串
     """
     device_dict = {}
