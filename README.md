@@ -77,7 +77,6 @@ $ adversion --id 012332EF
 - 完成自定义命令设置（完成）
 - adb基本命令封装（完成devices、name、version、screenshot、info、wm_size）
 - 优化终端命令行输出（完成，以json格式输出）
+- 封装ios的命令行（已完成）
+- 自动识别Android或iOS，一个命令即可完成（已完成）
 - logging融入到命令输出上（未完成，添加参数`--verbose`）
-- 命令行尝试采用第三方库click(延后，暂不进行)
-- 封装ios的命令行（正在进行）
-- 自动识别Android或iOS，一个命令即可完成
