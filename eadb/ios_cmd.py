@@ -64,7 +64,6 @@ class IOSCmd(object):
         one_device_info['platform'] = 'iOS'
         one_device_info['name'] = self.device_name(id=id)[id]
         one_device_info['version'] = self.device_version(id=id)[id]
-        one_device_info['wm_size'] = None
         info_dict[id] = one_device_info
         return info_dict
 
@@ -108,7 +107,7 @@ class IOSCmd(object):
 
     def device_wm_size(self, id=None):
         # 目前考虑已机型判断分辨率
-        print("ios 准备开发")
+        print("ios 不支持")
         pass
 
     def device_screenshot(self, id=None):
