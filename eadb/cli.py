@@ -6,7 +6,7 @@
 # Version : 1.0
 # Desc    : 命令行的配置
 
-
+import sys
 import argparse
 from eadb.common_cmd import get_connect_devices, print_connect_device, run_device_cmd
 from eadb.__about__ import __description__, __version__
@@ -26,11 +26,11 @@ def main_eadb():
 
     if args.version:
         print(__version__)
-        exit(0)
+        sys.exit(0)
 
     if args.devices:
         print_connect_device()
-        exit(0)
+        sys.exit(0)
 
     if args.screenshot:
         run_device_cmd('device_screenshot', device_id=args.screenshot)

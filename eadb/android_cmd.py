@@ -145,3 +145,11 @@ class AndroidAdb(object):
         logging.info(r"获取到设备'{0}'的屏幕大小为'{1}'".format(id, size))
         return size
 
+    def install(self, app_path, id=None):
+        run_command('adb -s {0} install -r {1}'.format(id, app_path))
+        pass
+
+    def uninstall(self, app_id, id=None):
+        run_command('adb -s {0} uninstall {1}'.format(id, app_id))
+        pass
+

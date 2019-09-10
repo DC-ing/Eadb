@@ -16,7 +16,7 @@ from eadb.utils import check_is_none, get_time, run_command
 class IOSCmd(object):
 
     def __init__(self):
-        check_ios_is_ok = run_command('idevice_id -l')
+        check_ios_is_ok = run_command('idevice_id --list')
         if 'command not found' in check_ios_is_ok:
             logging.error(r'请安装 iOS 开发环境.')
             raise EnvironmentError(r'Please install iOS development environment first.')
@@ -28,7 +28,7 @@ class IOSCmd(object):
         :return: 设备列表
         """
         devices = []
-        output = run_command('idevice_id -l')
+        output = run_command('idevice_id --list')
         # 先判断有没有设备连接
         if check_is_none(output):
             logging.warning(r'当前无 iOS 设备连接')
@@ -77,7 +77,7 @@ class IOSCmd(object):
         screen_file = '{0}-{1}-{2}.png'.format(device_name, version, get_time())
         screen_path = '{0}/Desktop/{1}'.format(os.environ['HOME'], screen_file)
         logging.info(r'截图存放路径：{0}'.format(screen_path))
-        screen_log = run_command('idevicescreenshot -u {0} {1}'.format(id, screen_path))
+        screen_log = run_command('idevicescreenshot --udid {0} {1}'.format(id, screen_path))
         if not check_is_none(screen_log) and 'Could not start screenshotr service' in screen_log:
             print(r'iOS 截屏服务出错，请修复')
             logging.error(screen_log)
@@ -97,7 +97,7 @@ class IOSCmd(object):
         :return: 设备名称
         """
         name = ''
-        model = run_command('idevicename -u {0}'.format(id)).replace(' ', '_')
+        model = run_command('idevicename --udid {0}'.format(id)).replace(' ', '_')
         model = re.sub('\r\n|\n', '', model)
         name = model
         logging.info(r"获取到设备'{0}'的名称：'{1}'".format(id, name))
@@ -116,7 +116,7 @@ class IOSCmd(object):
         :return: 系统版本
         """
         version = ''
-        product_version = run_command('ideviceinfo -u {0} | grep "ProductVersion"'.format(id))
+        product_version = run_command('ideviceinfo --udid {0} | grep "ProductVersion"'.format(id))
         version = product_version.split(':')[1].strip()
         version[id] = re.sub('\r\n|\n', '', version)
         logging.info(r"获取到设备'{0}'的系统版本号为'{1}'".format(id, version))
@@ -126,3 +126,16 @@ class IOSCmd(object):
         # 目前考虑已机型判断分辨率
         print("ios 不支持")
         pass
+
+    def install(self, app_path, id=None):
+        """
+        安装应用，支持.app和.ipa安装
+        :param app_path: 安装文件路径
+        :param id: 设备号
+        """
+        run_command('ideviceinstaller --udid {0} --install {1}'.format(id, app_path))
+        logging.info(r'设备 "{0}" 安装 "{1}" 成功'.format(id, app_path))
+
+    def uninstall(self, app_id, id=None):
+        run_command('ideviceinstaller --udid {0} --uninstall {1}'.format(id, app_id))
+        logging.info(r'设备 "{0}" 卸载 "{1}" 成功'.format(id, app_id))
